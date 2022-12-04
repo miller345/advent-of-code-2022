@@ -17,13 +17,8 @@ parseLine line =
 
 doesFullyContain :: ((Int, Int), (Int, Int)) -> Bool
 doesFullyContain ((a, b), (c, d)) =
-  -- Let left arg (x) have the greatest range
-  let swap = (d - c) > (b - a) -- true if need swapping
-      x0 = if swap then c else a
-      x1 = if swap then d else b
-      y0 = if swap then a else c
-      y1 = if swap then b else d
-   in (y0 >= x0) && (y1 <= x1)
+  let smallest = min (length [a .. b]) (length [c .. d])
+   in length ([a .. b] `intersect` [c .. d]) == smallest
 
 doesOverlap :: ((Int, Int), (Int, Int)) -> Bool
 doesOverlap ((a, b), (c, d)) = not (null (intersect [a .. b] [c .. d]))
