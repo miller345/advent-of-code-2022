@@ -13,7 +13,7 @@ readFileAsList fileName = do
   let lns = lines contents
   return lns
 
-splitListAt :: String -> [String] -> [[String]]
+splitListAt :: Eq a => a -> [a] -> [[a]]
 splitListAt _ [] = [[]]
 splitListAt s list =
   let l = last list
