@@ -26,3 +26,6 @@ splitListInHalf list = let half = length list `div` 2 in splitAt half list
 chunks :: Int -> [a] -> [[a]]
 chunks _ [] = []
 chunks n xs = let (ys, zs) = splitAt n xs in ys : chunks n zs
+
+asInt :: String -> Int
+asInt x = read x :: Int
