@@ -1,11 +1,11 @@
 module Utils where
 
-import Text.Printf (PrintfArg, printf)
+import Text.Printf (printf)
 
-printPartOneAndTwo :: (PrintfArg a) => a -> a -> IO ()
+printPartOneAndTwo :: (Show a) => a -> a -> IO ()
 printPartOneAndTwo part1 part2 = do
-  printf "%s: %d \n" "Part one" part1
-  printf "%s: %d \n" "Part two" part2
+  printf ("Part one " ++ show part1 ++ "\n")
+  printf ("Part two " ++ show part2 ++ "\n")
 
 readFileAsList :: FilePath -> IO [String]
 readFileAsList fileName = do
@@ -29,3 +29,8 @@ chunks n xs = let (ys, zs) = splitAt n xs in ys : chunks n zs
 
 asInt :: String -> Int
 asInt x = read x :: Int
+
+replaceAt :: Int -> a -> [a] -> [a]
+replaceAt index item list =
+  let (a, _ : b) = splitAt index list
+   in a ++ item : b
