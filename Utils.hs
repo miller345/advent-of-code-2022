@@ -13,12 +13,15 @@ readFileAsList fileName = do
   let lns = lines contents
   return lns
 
-splitListAt :: Eq a => a -> [a] -> [[a]]
+splitListAtItem :: Eq a => a -> [a] -> [[a]]
+splitListAtItem item = splitListAt (== item)
+
+splitListAt :: (a -> Bool) -> [a] -> [[a]]
 splitListAt _ [] = [[]]
-splitListAt s list =
+splitListAt fn list =
   let l = last list
-      current = splitListAt s (init list)
-   in if l == s then current ++ [[]] else init current ++ [last current ++ [l]]
+      current = splitListAt fn (init list)
+   in if fn l then current ++ [[]] else init current ++ [last current ++ [l]]
 
 splitListInHalf :: [a] -> ([a], [a])
 splitListInHalf list = let half = length list `div` 2 in splitAt half list

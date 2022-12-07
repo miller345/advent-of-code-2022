@@ -1,5 +1,5 @@
 import Data.List (intersect)
-import Utils (asInt, printPartOneAndTwo, readFileAsList, splitListAt)
+import Utils (asInt, printPartOneAndTwo, readFileAsList, splitListAtItem)
 
 main :: IO ()
 main = do
@@ -9,8 +9,8 @@ main = do
 
 parseLine :: String -> ((Int, Int), (Int, Int))
 parseLine line =
-  let pair = splitListAt ',' line
-      arr = map (map asInt . splitListAt '-') pair
+  let pair = splitListAtItem ',' line
+      arr = map (map asInt . splitListAtItem '-') pair
       first = head arr
       sec = last arr
    in ((head first, last first), (head sec, last sec))

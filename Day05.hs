@@ -1,6 +1,6 @@
 import Data.Char (isDigit, isSpace)
 import Data.List (isInfixOf)
-import Utils (asInt, printPartOneAndTwo, readFileAsList, replaceAt, splitListAt)
+import Utils (asInt, printPartOneAndTwo, readFileAsList, replaceAt, splitListAtItem)
 
 main :: IO ()
 main = do
@@ -27,10 +27,10 @@ parseInstructions lines =
 parseInstruction :: String -> (Int, Int, Int)
 parseInstruction line =
   let extractNum str = asInt (filter isDigit str)
-      count = head (splitListAt 'f' line)
-      fromAndTo = last (splitListAt 'f' line)
-      from = head (splitListAt 't' fromAndTo)
-      to = last (splitListAt 't' fromAndTo)
+      count = head (splitListAtItem 'f' line)
+      fromAndTo = last (splitListAtItem 'f' line)
+      from = head (splitListAtItem 't' fromAndTo)
+      to = last (splitListAtItem 't' fromAndTo)
    in (extractNum count, extractNum from, extractNum to)
 
 applyInstruction :: Bool -> (Int, Int, Int) -> [String] -> [String]
