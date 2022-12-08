@@ -37,3 +37,6 @@ replaceAt :: Int -> a -> [a] -> [a]
 replaceAt index item list =
   let (a, _ : b) = splitAt index list
    in a ++ item : b
+
+getAllCoords :: [a] -> [b] -> [(a, b)]
+getAllCoords xs ys = [(x, y) | x <- xs, y <- ys]
